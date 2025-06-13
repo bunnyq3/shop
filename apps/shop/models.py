@@ -1,16 +1,31 @@
 from django.db import models
 
-class Offers:
-    ...
+class Category(models.Model):
+    name = models.CharField(max_length=25,unique=True)
+    slug = models.SlugField(unique=True)
 
-class Tank:
-    ...
+    def __str__(self):
+        return self.name
+    
+class item(models.Model):
+    name = models.CharField(max_length=25,unique=True)
+    price = models.DecimalField()
+    discount_time = models.CharField(max_length=25,null=False)
+    discount_price = models.DecimalField()
 
-class Gold:
-    ...
+    def __str__(self):
+        return self.name
 
-class Containers:
-    ...
+    class Meta:
+        ordering = ['name']
+        indexes = [models.Index(fields=['name'])]
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
+
+    
+
+
 
 
 
